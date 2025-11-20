@@ -14,7 +14,7 @@ describe("Reentrancy : Attack vulnerable contract", function () {
     expect(vaultBalanceInit).to.equal(0n);
 
 
-    const attack = await ethers.deployContract("Attack", [vault.target]);
+    const attack = await ethers.deployContract("AttackReentrancy", [vault.target]);
     await vault.connect(signers[1]).store({ value: ethers.parseEther("1") });
     await vault.connect(signers[2]).store({ value: ethers.parseEther("2") });
 

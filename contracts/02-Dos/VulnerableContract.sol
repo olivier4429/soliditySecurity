@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.28;
+
+
+contract Auction {
+    address public highestBidder;
+    uint public highestBid;
+
+    function bid() payable public {
+        require(msg.value >= highestBid);
+
+        if (highestBidder != address(0)) {
+            (bool success, ) = highestBidder.call{value:highestBid}("");
+            require(success); // if this call consistently fails, no one else can bid
+        }
+
+       highestBidder = msg.sender;
+       highestBid = msg.value;
+    }
+}

