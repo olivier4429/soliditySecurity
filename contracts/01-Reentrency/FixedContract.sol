@@ -7,13 +7,13 @@ contract VaultFixed {
 
     /// @dev Store ETH in the contract.
     function store() public payable {
-        balances[msg.sender]+=msg.value;
+        balances[msg.sender] += msg.value;
     }
-    
+
     /// @dev Redeem your ETH.
     function redeem() public {
         uint toSend = balances[msg.sender];
-        balances[msg.sender]=0;
-				msg.sender.call{ value: toSend }("");
+        balances[msg.sender] = 0;
+        msg.sender.call{value: toSend}("");
     }
 }

@@ -35,7 +35,7 @@ describe("DosUnexpectedError", function () {
 
     //Call attackStep 100 times to consume gas
     for (let i = 0; i < 100; i++) {
-      console.log(`Attack step ${i + 1}/28`);
+      console.log(`Attack step ${i + 1}/100`);
       await attack.attackStep();
     }
     //End of attack 
