@@ -21,7 +21,7 @@ contract Bank {
     // Withdraw the entire smart contract balance
     function withdrawAll() public {
         require(msg.sender == owner);
-        require(address(this).balance == 10 ether);
+        require(address(this).balance == 10 ether); // !!!  To fix: change to >= 10 ether to prevent force feeding attack
         payable(owner).send(address(this).balance);
     }
 }

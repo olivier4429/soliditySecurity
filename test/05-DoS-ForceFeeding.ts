@@ -23,7 +23,7 @@ describe("ForceFeeding", async function () {
       await Bank.connect(owner).deposit({ value: ethers.parseEther("1") });
     }
 
-    console.log("Balance Bank après dépôts normaux:",
+    console.log("Balance Bank after deposits",
       ethers.formatEther(await ethers.provider.getBalance(bankAddress)), "ETH");
 
     // Deploy ForceFeeder with 5 ETH 
@@ -45,7 +45,7 @@ describe("ForceFeeding", async function () {
       await Bank.connect(owner).withdrawAll();
       console.log("❌ Force Feeding failed, owner was able to withdraw");
     } catch (e) {
-      console.log("✅ Withdraw impossible for owner");
+      console.log("✅ Withdraw impossible for owner, contract blocked. Because of this require in withdrawAll: require(address(this).balance == 10 ether);");
     }
   });
 });

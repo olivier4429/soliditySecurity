@@ -5,7 +5,7 @@ contract ForceFeeder {
 
     constructor() payable {}
 
-    // Force l'envoi d'ETH vers une cible via selfdestruct
+    // Forces the sending of ETH to a target via selfdestruct.
     function attack(address target) external {
         selfdestruct(payable(target));
     }
