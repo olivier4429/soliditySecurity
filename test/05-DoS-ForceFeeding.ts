@@ -5,7 +5,7 @@ const { ethers } = await network.connect();
 
 
 describe("ForceFeeding", async function () {
-  it.only("Should do a Force Feeding", async function () {
+  it("Should do a Force Feeding", async function () {
     const [owner, attacker] = await ethers.getSigners();
 
     console.log("Owner:", owner.address);
